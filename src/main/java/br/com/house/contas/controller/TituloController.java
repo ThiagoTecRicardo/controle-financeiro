@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.house.contas.model.StatusTitulo;
 import br.com.house.contas.model.Titulo;
 import br.com.house.contas.repository.Titulos;
+import br.com.house.contas.service.CadastroTituloService;
 
 
 @Controller
@@ -25,6 +26,9 @@ public class TituloController {
 
 	@Autowired
 	private Titulos titulos;
+	
+	@Autowired
+	private CadastroTituloService cadastroTituloService;
 	
 
 
@@ -45,7 +49,7 @@ public class TituloController {
 		}
 		
 		try {
-			titulos.save(titulo);
+			cadastroTituloService.salvar(titulo);
 			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
 			return "redirect:/titulos/novo";
 		} catch (IllegalArgumentException e) {
@@ -76,7 +80,7 @@ public class TituloController {
 	
 	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
-		titulos.deleteById(codigo);
+		cadastroTituloService.excluir(codigo);
 		
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 		return "redirect:/titulos";

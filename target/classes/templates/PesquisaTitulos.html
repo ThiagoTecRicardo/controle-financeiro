@@ -37,38 +37,22 @@
 		<div class="panel-body">
 
 
-			<form method="GET" class="form-horizontal">
-				<div class="form-group">
-					<div class="col-sm-4">
-						<div class="input-group">
-							<input class="form-control" placeholder="Qual título você está procurando?"
-								autofocus="autofocus"></input>
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</form>
+			<form method="GET" class="form-horizontal" action="/titulos" th:object="${filtro}">
+	   			<div class="form-group">
+	   				<div class="col-sm-4">
+	   					<div class="input-group">
+	   						<input class="form-control" placeholder="Qual título você está procurando?"
+	   							autofocus="autofocus" th:field="*{descricao}"></input>
+	   						<span class="input-group-btn">
+	   							<button type="submit" class="btn btn-default">
+	   								<i class="glyphicon glyphicon-search"></i>
+	   							</button>
+	   						</span>
+	   					</div>
+	   				</div>
+	   			</div>
+	   		</form> 	
 			
-			<form method="GET" class="form-horizontal">
-				<div class="form-group">
-					<div class="col-sm-2">
-						<div class="input-group">
-							<input class="form-control" placeholder="Qual data você está procurando?"
-								 data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
-							data-date-autoclose="true" data-date-today-highlight="true" ></input>
-							<span class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</form>
 			
 			
 			
@@ -109,7 +93,7 @@
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
 							<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
-	   								title="Receber" rel="tooltip" data-placement="top"
+	   								title="Pagar" rel="tooltip" data-placement="top"
 	   								th:attr="data-codigo=${titulo.codigo}"
 	   								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
 	   							<span class="glyphicon glyphicon-check"></span>

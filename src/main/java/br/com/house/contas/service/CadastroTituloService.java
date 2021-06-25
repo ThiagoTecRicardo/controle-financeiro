@@ -1,5 +1,7 @@
 package br.com.house.contas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.house.contas.model.StatusTitulo;
 import br.com.house.contas.model.Titulo;
 import br.com.house.contas.repository.Titulos;
+import br.com.house.contas.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService {
@@ -33,6 +36,11 @@ public class CadastroTituloService {
 		titulos.save(titulo);
 		
 		return StatusTitulo.PAGO.getDescricao();
+	}
+	
+	public List<Titulo> filtrar(TituloFilter filtro) {
+		String descricao = filtro.getDescricao() == null ? "" : filtro.getDescricao();
+		return titulos.findByDescricaoContaining(descricao);
 	}
 
 }

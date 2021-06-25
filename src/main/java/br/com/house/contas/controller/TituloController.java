@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.house.contas.model.StatusTitulo;
 import br.com.house.contas.model.Titulo;
 import br.com.house.contas.repository.Titulos;
+import br.com.house.contas.repository.filter.TituloFilter;
 import br.com.house.contas.service.CadastroTituloService;
 
-
+@CrossOrigin(value = "*")
 @Controller
 @RequestMapping("/titulos")
 public class TituloController {
@@ -60,8 +62,9 @@ public class TituloController {
 	}
 
 	@RequestMapping
-	public ModelAndView pesquisar() {
-		List<Titulo> todosTitulos = titulos.findAll();
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro) {
+		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
+		
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos", todosTitulos);
 		return mv;

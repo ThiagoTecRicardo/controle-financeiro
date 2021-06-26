@@ -22,6 +22,8 @@ public class Receita {
 	private BigDecimal valor;
 	
 	private Date dataRecebimento;
+	
+	private StatusReceber status;
 
 	public Long getCodigo() {
 		return codigo;
@@ -61,6 +63,17 @@ public class Receita {
 
 	public void setDataRecebimento(Date dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
+	}
+	
+	
+	
+
+	public StatusReceber getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusReceber status) {
+		this.status = status;
 	}
 
 	@Override

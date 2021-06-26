@@ -24,3 +24,11 @@
 	float: left;
 	padding-top: 2px;
 }
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 30px;
+    margin-left: 50px;
+}
